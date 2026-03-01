@@ -1,0 +1,10 @@
+1,Samsung,Galaxy S23,Android,8,256,3999.99,15
+2,Apple,iPhone 14,iOS,6,128,4599.50,10
+3,Xiaomi,Redmi Note 12,Android,8,256,1499.99,25
+4,Google,Pixel 7,Android,8,128,3299.00,8
+5,OnePlus,11,Android,16,256,3799.99,12
+6,Huawei,P50 Pro,HarmonyOS,8,256,3499.90,6
+7,Apple,iPhone 13,iOS,4,128,3299.99,20
+8,Samsung,Galaxy A54,Android,8,128,1899.49,30
+9,Motorola,Edge 40,Android,8,256,2799.99,14
+10,Nothing,Phone 2,Android,12,256,3199.00,9
