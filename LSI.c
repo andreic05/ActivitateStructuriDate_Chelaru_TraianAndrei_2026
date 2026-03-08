@@ -69,6 +69,13 @@ void adaugaSmartphoneInLista(NL** lista, Sph sph) {
 	}
 }
 
+void adaugaSmartphoneLaInceputInLista(NL** lista, Sph sph) {
+	NL* nou = malloc(sizeof(NL));
+	nou->info = sph;
+	nou->next = *lista;
+	*lista = nou;
+}
+
 NL* citireListaSmartphoneDinFisier(const char* numeFisier) {
 	FILE* f = fopen(numeFisier, "r");
 
@@ -92,12 +99,20 @@ void dezalocareListaSmartphone(NL** lista) {
 		*lista = (*lista)->next;
 		free(p);
 	}
+	*lista = NULL;
 }
 
 void afisareSmartphone(Sph sph) {
 	printf("Id: %d\n", sph.id);
-	printf("Model: %s\n\n", sph.model);
+	printf("Brand: %s\n", sph.brand);
+	printf("Model: %s\n", sph.model);
+	printf("OS: %s\n", sph.os);
+	printf("RAM: %d", sph.ram);
+	printf("Stocare: %d\n", sph.stocare);
+	printf("Pret: %.2f\n", sph.pret);
+	printf("Stoc: %d\n\n", sph.stoc);
 }
+
 
 void afisareListaSmartphone(NL* lista) {
 	while (lista) {
@@ -106,12 +121,50 @@ void afisareListaSmartphone(NL* lista) {
 	}
 }
 
+void stergeDinListaDupaId(NL** lista, int id) {
+	NL* p = *lista;
+	NL* prev = NULL;
+	while (p) {
+		if (p->info.id == id) {
+			if (prev) {
+				prev->next = p->next;
+			}
+			else {
+				if (p->next) *lista = p->next;
+				else {
+					free(*lista);
+					*lista = NULL;
+				}
+			}
+
+			NL* aux = p;
+			free(p->info.brand);
+			free(p->info.model);
+			free(p->info.os);
+			p = p->next;
+			free(aux);
+		}
+		else {
+			prev = p;
+			p = p->next;
+		}
+	}
+
+	
+}
+
 
 
 int main() {
 	NL* lista = citireListaSmartphoneDinFisier("smartphones.txt");
 
+	stergeDinListaDupaId(&lista, 1);
+	stergeDinListaDupaId(&lista, 4);
+	stergeDinListaDupaId(&lista, 10);
+
 	afisareListaSmartphone(lista);
+
+	
 
 	dezalocareListaSmartphone(&lista);
 
